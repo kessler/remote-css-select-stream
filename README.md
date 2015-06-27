@@ -16,9 +16,9 @@ var rcss = require('remote-css-select-stream')
 
 // list all the files in this github page
 rcss({ 
-    url: 'https://github.com/kessler/remote-css-select-stream', 
-    selector: 'a.js-directory-link', 
-    filter: '.+\\.js'
+    url: 'https://github.com/kessler/remote-css-select-stream', // required
+    selector: 'a.js-directory-link', // optional
+    filter: '.+\\.js' // optional
 }).pipe(process.stdout)
 ```
 
