@@ -11,50 +11,45 @@ module.exports = function (opts) {
 		throw new Error('missing url')
 	}
 
-	var selector = opts.selector
-	if(!selector) {
-		throw new Error('missing selector')
-	}
-
+	var selector = opts.selector || 'html'
 	var filter = opts.filter
 
 	debug(opts)
-
-	request(url).pipe(tr)
 
 	var resultStream
 
 	if (filter) {
 		debug('using filter stream')
+		filter = new RegExp(filter)
 		resultStream = through2(fliterStream)
 	} else {
 		debug('using simple stream')
 		resultStream = through2(simpleStream)
 	}
-	
 
 	tr.selectAll(selector, function (results) {
-		results.createReadStream().pipe(resultStream)
+		results.createReadStream().pipe(resultStream, {end: false })
 	})
 
-	return resultStream
+	request(url).pipe(tr)
 
 	function fliterStream (chunk, enc, cb) {
 		enc = enc === 'buffer' ? undefined : enc
 		var entry = chunk.toString(enc)
 		
-		if (filter.test(entry)) {
-			this.push(entry)
+		if (!filter.test(entry)) {
+			entry = undefined
 		}
 
-		cb()
+		cb(null, entry)
 	}
 
 	function simpleStream (chunk, enc, cb) {
-		enc = enc === 'buffer' ? undefined : enc		
-		this.push(chunk.toString(enc))		
-		cb()
+		enc = enc === 'buffer' ? undefined : enc
+		cb(null, chunk.toString(enc))
 	}
+
+	return resultStream
 }
 
 if (require.main === module) {
@@ -63,6 +58,6 @@ if (require.main === module) {
 		module.exports(argv).pipe(process.stdout)
 	} catch (e) {
 		console.error(e)
-		console.error('usage: rcss --url=required --selector=required --filter=optional,regexp')
+		console.error('usage: rcss --url=required --selector=optional,css select query --filter=optional,regexp')
 	}
 }
