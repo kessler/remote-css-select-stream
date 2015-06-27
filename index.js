@@ -54,8 +54,14 @@ module.exports = function (opts) {
 
 if (require.main === module) {
 	var argv = require('minimist')(process.argv.slice(2))
+
+	var printStream = through2(function (chunk, enc, cb) {
+		console.log(chunk.toString(enc === 'buffer' ? undefined : enc))
+		cb()
+	})
+
 	try {
-		module.exports(argv).pipe(process.stdout)
+		module.exports(argv).pipe(printStream)
 	} catch (e) {
 		console.error(e)
 		console.error('usage: rcss --url=required --selector=optional,css select query --filter=optional,regexp')
