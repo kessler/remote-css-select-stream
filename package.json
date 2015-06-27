@@ -1,0 +1,25 @@
+{
+  "name": "remote-css-select-stream",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "dependencies": {
+    "debug": "^2.2.0",
+    "hyperquest": "^1.2.0",
+    "minimist": "^1.1.1",
+    "trumpet": "^1.7.1"
+  },
+  "author": "Yaniv Kessler",
+  "bugs": {
+    "url": "https://github.com/kessler/remote-css-select-stream/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kessler/remote-css-select-stream"
+  },
+  "homepage": "https://github.com/kessler/remote-css-select-stream",
+  "license": "MIT"
+}
