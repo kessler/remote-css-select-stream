@@ -1,16 +1,20 @@
 {
   "name": "remote-css-select-stream",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha -R spec"
   },
   "bin": {
-      "remote-css-select-stream": "index.js",
-      "rcss": "index.js"
-    },
-  "keywords": [ "html", "css", "stream" ],
+    "remote-css-select-stream": "index.js",
+    "rcss": "index.js"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "stream"
+  ],
   "dependencies": {
     "debug": "^2.2.0",
     "hyperquest": "^1.2.0",
