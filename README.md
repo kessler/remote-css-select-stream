@@ -15,7 +15,11 @@ npm install --save remote-css-select-stream
 var rcss = require('remote-css-select-stream')
 
 // list all the files in this github page
-rcss({ url: 'https://github.com/kessler/remote-css-select-stream', selector: 'a.js-directory-link', filter: '.+\\.js'}).pipe(process.stdout)
+rcss({ 
+    url: 'https://github.com/kessler/remote-css-select-stream', 
+    selector: 'a.js-directory-link', 
+    filter: '.+\\.js'
+}).pipe(process.stdout)
 ```
 
 ## CLI
