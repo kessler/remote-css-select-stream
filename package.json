@@ -19,6 +19,7 @@
     "debug": "^2.2.0",
     "hyperquest": "^1.2.0",
     "minimist": "^1.1.1",
+    "through2": "^2.0.0",
     "trumpet": "^1.7.1"
   },
   "author": "Yaniv Kessler",
