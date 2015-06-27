@@ -28,10 +28,13 @@ module.exports = function (opts) {
 	}
 
 	tr.selectAll(selector, function (results) {
+		debug('selectAll')
 		results.createReadStream().pipe(resultStream, {end: false })
 	})
 
-	request(url).pipe(tr)
+	request(url).pipe(tr).on('end', function () {
+		resultStream.end()
+	})
 
 	function fliterStream (chunk, enc, cb) {
 		enc = enc === 'buffer' ? undefined : enc
