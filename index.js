@@ -27,13 +27,22 @@ module.exports = function (opts) {
 		resultStream = through2(simpleStream)
 	}
 
+	resultStream.setMaxListeners(0)
+
 	tr.selectAll(selector, function (results) {
 		debug('selectAll')
-		results.createReadStream().pipe(resultStream, {end: false })
+
+		var rs = results.createReadStream()
+		
+		rs.on('end', function () {
+			rs.unpipe(resultStream)
+		})
+
+		rs.pipe(resultStream, { end: false })
 	})
 
 	request(url).pipe(tr).on('end', function () {
-		resultStream.end()
+		resultStream.emit('end')
 	})
 
 	function fliterStream (chunk, enc, cb) {
