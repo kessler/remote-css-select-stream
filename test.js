@@ -13,14 +13,15 @@ describe('remote-css-select-stream', function () {
 			selector: 'a.js-directory-link',
 			filter: '.+\\.js'
 		})
-		.on('end', function () {
-			expect(results).to.have.length(2)
-			expect(results).to.deep.equal([ 'index.js', 'package.json' ])
-			done()
-		})
 		.pipe(through2(function (c, e, cb) {
 			results.push(c.toString())
-			cb()
+			setTimeout(cb, 500)
 		}))
+
+		setTimeout(function () {
+			expect(results).to.have.length(3)
+			expect(results).to.deep.equal([ 'index.js', 'package.json', 'test.js' ])
+			done()
+		}, 5000)
 	})
 })

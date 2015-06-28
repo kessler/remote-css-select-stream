@@ -29,11 +29,11 @@ module.exports = function (opts) {
 
 	resultStream.setMaxListeners(0)
 
-	tr.selectAll(selector, function (results) {
+	tr.selectAll(selector, function (el) {
 		debug('selectAll')
 
-		var rs = results.createReadStream()
-		
+		var rs = el.createReadStream()
+
 		rs.on('end', function () {
 			rs.unpipe(resultStream)
 		})
@@ -41,9 +41,10 @@ module.exports = function (opts) {
 		rs.pipe(resultStream, { end: false })
 	})
 
-	request(url).pipe(tr).on('end', function () {
-		resultStream.emit('end')
-	})
+	request(url).pipe(tr)
+	// .on('finish', function () {
+	// 	resultStream.emit('end')
+	// })
 
 	function fliterStream (chunk, enc, cb) {
 		enc = enc === 'buffer' ? undefined : enc
