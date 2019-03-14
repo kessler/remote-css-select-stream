@@ -7,7 +7,7 @@ var cp = require('child_process')
 var path = require('path')
 
 var REPO = 'https://github.com/kessler/remote-css-select-stream'
-var SELECTOR = 'a.js-directory-link'
+var SELECTOR = 'a.js-navigation-open'
 
 describe('remote-css-select-stream', function() {
 
@@ -69,7 +69,7 @@ describe('remote-css-select-stream', function() {
 	it('has a cli', function (done) {
 		this.timeout(10000)
 		var script = path.resolve(__dirname, 'index.js')
-		var command = ['node', script, '--url=' + REPO, ' --selector=' + 'a.js-directory-link', '--filter=^.+\\.js$'].join(' ')
+		var command = ['node', script, '--url=' + REPO, ' --selector=' + 'a.js-navigation-open', '--filter=^.+\\.js$'].join(' ')
 		cp.exec(command, function (err, stdout, stderr) {
 			if (err) return done(err)
 

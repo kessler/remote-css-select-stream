@@ -16,12 +16,12 @@
     "stream"
   ],
   "dependencies": {
-    "concat-stream": "^1.5.1",
-    "debug": "^2.2.0",
-    "hyperquest": "^1.2.0",
-    "minimist": "^1.1.1",
-    "through2": "^2.0.0",
-    "trumpet": "^1.7.1"
+    "concat-stream": "^2.0.0",
+    "debug": "^4.1.1",
+    "hyperquest": "^2.1.3",
+    "minimist": "^1.2.0",
+    "through2": "^3.0.1",
+    "trumpet": "^1.7.2"
   },
   "author": "Yaniv Kessler",
   "bugs": {
@@ -35,7 +35,7 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.0.0",
-    "mocha": "^2.2.5",
+    "mocha": "^6.0.2",
     "simply-wait": "^1.0.2"
   }
 }
