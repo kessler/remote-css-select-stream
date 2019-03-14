@@ -17,7 +17,7 @@ var rcss = require('remote-css-select-stream')
 // list all the javascript  files in this github page
 rcss({ 
     url: 'https://github.com/kessler/remote-css-select-stream', // required
-    selector: 'a.js-directory-link', // optional
+    selector: 'a.js-navigation-open', // optional
     filter: '^.+\\.js$' // optional
 }).pipe(process.stdout)
 ```
@@ -34,14 +34,14 @@ var req = request('https://github.com/kessler/remote-css-select-stream')
 // list all the javascript files in this github page
 rcss({ 
     request: req , // required
-    selector: 'a.js-directory-link', // optional
+    selector: 'a.js-navigation-open', // optional
     filter: '^.+\\.js$' // optional
 }).pipe(process.stdout)
 
 // list all markdown files
 rcss({ 
     request: req , // required
-    selector: 'a.js-directory-link', // optional
+    selector: 'a.js-navigation-open', // optional
     filter: '^.+\\.md$' // optional
 }).pipe(process.stdout)
 ```
@@ -56,7 +56,7 @@ npm install -g remote-css-select-stream
 ### usage
 Same as the above programmatic example, but this time through command line
 ```
-rcss --url=https://github.com/kessler/remote-css-select-stream --selector=a.js-directory-link --filter=^.+\\.js$
+rcss --url=https://github.com/kessler/remote-css-select-stream --selector=a.js-navigation-open --filter=^.+\\.js$
 ```
 
 ## Debugging
